@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-lg sticky-top">
+<nav id="navbar" class="navbar navbar-expand-lg sticky-top normal-nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ToDoList</a>
+    <a class="navbar-brand" href="{{path('main')}}">ToDoList</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <i class="bi bi-chevron-double-down"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-list-task"></i>Moje zadania</a>
+          <a class="nav-link active" aria-current="page" href="{{path('myTasks')}}"><i class="bi bi-list-task"></i>Moje zadania</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-person-fill"></i>Zarejestruj się</a>
+          <a class="nav-link" href="{{path('register')}}"><i class="bi bi-person-fill"></i>Zarejestruj się</a>
         </li>
         {% if not app.user %}
             <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-box-arrow-in-right"></i>Zaloguj się</a>
+            <a class="nav-link" href="{{path('app_login')}}"><i class="bi bi-box-arrow-in-right"></i>Zaloguj się</a>
             </li>
         {% endif %}
         {% if app.user %}
             <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Wyloguj się</a>
+            <a class="nav-link disabled" href="{{path('app_logout')}}" tabindex="-1" aria-disabled="true">Wyloguj się</a>
             </li>
         {% endif %}
       </ul>
