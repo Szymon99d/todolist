@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\RegisterUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,8 +28,9 @@ class ToDoListController extends AbstractController
     #[Route('/register', name: 'register')]
     public function register(): Response
     {  
-        return $this->render('ToDoList/index.html.twig', [
-            'controller_name' => 'ToDoListContollerController',
+        $form = $this->createForm(RegisterUserType::class,null,[]);
+        return $this->render('security/register.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
