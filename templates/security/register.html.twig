@@ -1,0 +1,60 @@
+{% extends 'globalTemplate.html.twig' %}
+
+{% block title %}Hello ToDoListContollerController!{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid block-main">
+
+    <h3 class="mb-3">Zarejestruj się</h3>
+
+    {{ form_start(form) }}
+    
+    <div class="container block-form">
+        <div class="row mb-3">
+            <div class="col-2 col-sm-1 form-field form-icon">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="col-10 col-sm-11 form-field">
+                {{form_widget(form.username)}}
+            </div>
+        </div>       
+        <div class="row mb-3">
+            <div class="col-2 col-sm-1 form-field form-icon">
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+            <div class="col-10 col-sm-11 form-field">
+                {{form_widget(form.email)}}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2 col-sm-1 form-field form-icon">
+                <i class="bi bi-key-fill"></i>
+            </div>
+            <div class="col-10 col-sm-11 form-field">
+                {{form_widget(form.password.pass)}}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2 col-sm-1 form-field form-icon">
+                <i class="bi bi-key-fill"></i>
+            </div>
+            <div class="col-10 col-sm-11 form-field">
+                {{form_widget(form.password.repeatPass)}}
+            </div>
+        </div>
+        <div class="row mb-3">
+            {{form_widget(form.register)}}
+        </div>
+
+    
+    </div>
+
+
+    {{ form_end(form) }}
+
+
+</div>
+
+
+{% endblock %}
