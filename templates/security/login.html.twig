@@ -6,7 +6,7 @@
 <div class="container-fluid block-main">
     <form method="post">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">Niepoprawna nazwa użytkownika lub hasło. Spróbuj ponownie.</div>
         {% endif %}
 
         {% if app.user %}
@@ -14,8 +14,6 @@
                 You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
-
-
 
         <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
         <div class="container block-form">
@@ -36,24 +34,14 @@
                     <input placeholder="Hasło..." type="password" name="password" id="inputPassword" class="form-control form-control-lg" autocomplete="current-password" required>
                 </div>
             </div>
-            <div class="row">
-                <button class="btn btn-lg form-btn" type="submit">Sign in </button>
+            <div class="row mb-3">
+                <button class="btn btn-lg form-btn" type="submit">Zaloguj się</button>
             </div>
         </div>
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
         >
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
-                </label>
-            </div>
-        #}
     </form>
+    <h4>Nie masz konta? <a href="{{path('register')}}" class="text-link">Zarejestruj się</a></h4>
 </div>
 {% endblock %}
