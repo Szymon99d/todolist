@@ -19,17 +19,22 @@ class RegisterUserType extends AbstractType
         $builder
             ->add('username', TextType::class,[
                 'label'=>'Nazwa użytkownika',
+                'attr'=>['placeholder'=>'Nazwa użytkownika','class'=>'form-control form-control-lg'],
             ])
             ->add('email',EmailType::class,[
                 'label'=>'E-mail',
+                'attr'=>['placeholder'=>'Adres email','class'=>'form-control form-control-lg'],
             ])
             ->add('password',RepeatedType::class,[
                 'type'=>PasswordType::class,
-                'first_options'=>['label'=>'Podaj hasło'],
-                'second_options'=>['label'=>'Powtórz hasło']
+                'first_name'=>'pass',
+                'second_name'=>'repeatPass',
+                'first_options'=>['label'=>'Podaj hasło','attr'=>['placeholder'=>'Podaj hasło','class'=>'form-control form-control-lg']],
+                'second_options'=>['label'=>'Powtórz hasło','attr'=>['placeholder'=>'Powtórz hasło','class'=>'form-control form-control-lg']],
             ])
             ->add('register',SubmitType::class,[
-                'label'=>'Zarejestruj się'
+                'label'=>'Zarejestruj się',
+                'attr'=>['class'=>'btn btn-lg form-btn'],
             ])
             
         ;
