@@ -15,4 +15,12 @@ class ToDoListContollerController extends AbstractController
             'controller_name' => 'ToDoListContollerController',
         ]);
     }
+
+    #[Route('/register', name: 'register')]
+    public function register(): Response
+    {  
+        return $this->render('ToDoList/index.html.twig', [
+            'controller_name' => 'ToDoListContollerController',
+        ]);
+    }
 }
