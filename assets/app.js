@@ -10,3 +10,21 @@ import './styles/app.css';
 import './styles/forms.css';
 // start the Stimulus application
 import './bootstrap';
+
+
+var navbar = $("#navbar");
+    
+$(window).on('scroll',()=>{    
+    var scroll = $(window).scrollTop();
+    if (scroll >= 40 && !window.matchMedia("(max-width:575px)").matches) 
+        navbar.addClass('hidden-nav');
+     else 
+        navbar.removeClass('hidden-nav');
+});
+
+
+
+
+
+
+
