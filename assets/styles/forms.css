@@ -16,7 +16,7 @@
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
-.form-control{
+.form-control-icons{
     border-left: none;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -35,4 +35,12 @@
 }
 .form-btn:hover{
     color: white;
+}
+.error-field ul{
+    padding: 5px;
+    list-style-type: none;
+    list-style-position: inside;
+    padding-left: 0;
+    color: rgb(172, 0, 0);
+    display: inline-block;
 }

@@ -1,9 +1,10 @@
 {% extends 'globalTemplate.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Zaloguj się!{% endblock %}
 
 {% block main %}
 <div class="container-fluid block-main">
+    <div class="mb-5"></div>
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">Niepoprawna nazwa użytkownika lub hasło. Spróbuj ponownie.</div>
@@ -11,7 +12,7 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                Jesteś zalogowany jako {{ app.user.username }}, <a href="{{ path('app_logout') }}">Wyloguj mnie</a>
             </div>
         {% endif %}
 
@@ -23,7 +24,7 @@
                     <i class="bi bi-person-fill"></i>
                 </div>
                 <div class="col-10 col-sm-11 form-field">
-                    <input placeholder="Nazwa użytkownika..." type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-control-lg" autocomplete="username" required autofocus>
+                    <input placeholder="Nazwa użytkownika" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-control-icons form-control-lg" autocomplete="username" required autofocus>
                 </div>
             </div>
             <div class="row mb-3">
@@ -31,7 +32,7 @@
                     <i class="bi bi-key-fill"></i>
                 </div>
                 <div class="col-10 col-sm-11 form-field">
-                    <input placeholder="Hasło..." type="password" name="password" id="inputPassword" class="form-control form-control-lg" autocomplete="current-password" required>
+                    <input placeholder="Hasło" type="password" name="password" id="inputPassword" class="form-control form-control-icons form-control-lg" autocomplete="current-password" required>
                 </div>
             </div>
             <div class="row mb-3">

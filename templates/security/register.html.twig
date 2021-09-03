@@ -1,54 +1,72 @@
 {% extends 'globalTemplate.html.twig' %}
 
-{% block title %}Hello ToDoListContollerController!{% endblock %}
+{% block title %}Zarejestruj się{% endblock %}
 
 {% block main %}
 
 <div class="container-fluid block-main">
 
+    <div class="mb-5"></div>
     <h3 class="mb-3">Zarejestruj się</h3>
-
-    {{ form_start(form) }}
     
-    <div class="container block-form">
-        <div class="row mb-3">
-            <div class="col-2 col-sm-1 form-field form-icon">
-                <i class="bi bi-person-fill"></i>
-            </div>
-            <div class="col-10 col-sm-11 form-field">
-                {{form_widget(form.username)}}
-            </div>
-        </div>       
-        <div class="row mb-3">
-            <div class="col-2 col-sm-1 form-field form-icon">
-                <i class="bi bi-envelope-fill"></i>
-            </div>
-            <div class="col-10 col-sm-11 form-field">
-                {{form_widget(form.email)}}
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-2 col-sm-1 form-field form-icon">
-                <i class="bi bi-key-fill"></i>
-            </div>
-            <div class="col-10 col-sm-11 form-field">
-                {{form_widget(form.password.pass)}}
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-2 col-sm-1 form-field form-icon">
-                <i class="bi bi-key-fill"></i>
-            </div>
-            <div class="col-10 col-sm-11 form-field">
-                {{form_widget(form.password.repeatPass)}}
-            </div>
-        </div>
-        <div class="row mb-3">
-            {{form_widget(form.register)}}
-        </div>
+    <div class="row mb-3">
+            {% if form_errors(form.username) %}
+            <div class="error-field alert alert-danger"><i class="bi bi-exclamation-triangle-fill"></i>{{form_errors(form.username)}}</div>
+            {% endif %}
 
-    
+            {% if form_errors(form.email) %}
+            <div class="error-field alert alert-danger"><i class="bi bi-exclamation-triangle-fill"></i>{{form_errors(form.email)}}</div>
+            {% endif %}
+
+            {% if form_errors(form.password.pass) %}
+            <div class="error-field alert alert-danger"><i class="bi bi-exclamation-triangle-fill"></i>{{form_errors(form.password.pass)}}</div>
+            {% endif %}
+
+            {% if form_errors(form.password.repeatPass) %}
+            <div class="error-field alert alert-danger"><i class="bi bi-exclamation-triangle-fill"></i>{{form_errors(form.password.repeatPass)}}</div>
+            {% endif %}
     </div>
+
+    {{ form_start(form) }} 
+        <div class="container block-form">   
+            <div class="row mb-3">
+                <div class="col-2 col-sm-1 form-field form-icon">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <div class="col-10 col-sm-11 form-field">
+                    {{form_widget(form.username)}}
+                </div>
+            </div>       
+            <div class="row mb-3">
+                <div class="col-2 col-sm-1 form-field form-icon">
+                    <i class="bi bi-envelope-fill"></i>
+                </div>
+                <div class="col-10 col-sm-11 form-field">
+                {{form_widget(form.email)}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 col-sm-1 form-field form-icon">
+                    <i class="bi bi-key-fill"></i>
+                </div>
+                <div class="col-10 col-sm-11 form-field">
+                    {{form_widget(form.password.pass)}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 col-sm-1 form-field form-icon">
+                    <i class="bi bi-key-fill"></i>
+                </div>
+                <div class="col-10 col-sm-11 form-field">
+                    {{form_widget(form.password.repeatPass)}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                {{form_widget(form.register)}}
+            </div>
+
+        
+        </div>
 
 
     {{ form_end(form) }}

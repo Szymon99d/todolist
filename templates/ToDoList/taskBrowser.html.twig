@@ -1,0 +1,73 @@
+{% extends 'globalTemplate.html.twig' %}
+
+{% block title %}Moje zadania{% endblock %}
+
+
+{% block main %}
+
+<div id="myTasks" class="container-fluid block-main">
+
+    <div class="row">
+        <a class="btn btn-lg btn-primary" href="{{path('myTasks')}}"><i class="bi bi-arrow-90deg-left"></i>Wróć do panelu</a>
+    </div>
+    <div class="mb-5"></div>
+    <h2 class="mb-5">Dodaj zadanie do kategorii: {{categoryId.getCategoryName()}}</h2>
+
+    <div class="container block-form">
+    
+    {{form_start(taskForm)}}
+    <div class="row mb-3">
+        <div class="col-sm-12 form-field">
+            {{form_widget(taskForm.goal)}}
+        </div>
+    </div>
+    <div class="row mb-3">
+        {{form_widget(taskForm.submit)}}
+    </div>
+    {{form_end(taskForm)}}
+
+
+    </div>
+    
+    <hr class="mb-4">
+    <div class="container">
+        <h2 class="mb-5">Twoje zadania z kategorii: {{categoryId.getCategoryName()}}</h2>
+        <div class="list-group">
+        {% for tasks in categoryId.getTasks()|sort((a,b) => a.status <=> b.status) %}
+            {% if tasks.getStatus == true %}
+                <li class="list-group-item list-group-item-success list-group-item-action justify-content-between break-words">
+            {% else %}
+                <li class="list-group-item list-group-item-warning list-group-item-action justify-content-between break-words">
+            {% endif %} 
+            <div class="row">
+                
+                <div class="col-12 col-lg-9 col-xl-9">
+                    {% if tasks.getStatus == true %}
+                        <h4><s>{{tasks.getGoal()}}</s></h4>
+                    {% else %}
+                        <h4>{{tasks.getGoal()}}</h4>
+                    {% endif %} 
+                </div>
+                 
+                
+                <div class="col-12 col-lg-2 col-xl-2">
+                    {% if tasks.getStatus == true %}
+                        <a href="{{path('updateTask',{'taskId':tasks.getId()})}}" id="{{tasks.getId()}}" class="btn btn-success list-button">Zrobione</a>
+                    {% else %}
+                        <a href="{{path('updateTask',{'taskId':tasks.getId()})}}" id="{{tasks.getId()}}" class="btn btn-warning list-button">Do zrobienia</a> 
+                    {% endif %}             
+                </div>
+                <div class="col-12 col-lg-1 col-xl-1">
+                    <a href="{{path('deleteTask',{'taskId':tasks.getId()})}}"class="btn btn-danger list-button" 
+                    onclick="return confirm('Na pewno usunąć te zadanie?')">Usuń</a>
+                </div>
+            </div>
+            </li>
+              
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

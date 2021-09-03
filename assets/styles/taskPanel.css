@@ -1,0 +1,65 @@
+#myTasks{
+    padding: 0px;
+}
+.category-panel{
+    background-color: rgb(52, 134, 91);
+    padding: 10px;
+    min-height: 1000px;
+}
+.task-panel{
+    background-color: rgb(60, 155, 106);
+    padding: 10px;
+    min-height: 1000px;
+}
+ol .task-list-element{
+    list-style-position: inside;
+    padding-left: 0;
+    font-size: 110%;
+}
+.block-category{
+    color: black;
+    opacity: .5;
+    text-decoration: none;
+    background-color: rgb(123, 171, 211);
+    border: 2px solid black;
+    min-height: 300px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+.bg-block-pattern:nth-child(2n) div
+{
+    background-color: rgb(84, 136, 179);
+}
+.block-category:hover{
+    border-color: rgb(0, 2, 139);
+    opacity: 1;
+    transform: scale(1.05);
+    transition: .3s;
+    color: black;
+
+}
+.list-group-item-success{
+    background-color: rgb(76, 240, 76);
+    color: black;
+}
+.list-group-item-warning{
+    background-color: rgb(224, 240, 76);
+    color: black;
+}
+.list-group-item button{
+    width: 100%;
+}
+.break-words{
+    word-wrap: break-word;
+}
+.btn-padding{
+    padding: 5px;
+    margin: 5px;
+}
+.list-button{
+    margin: 5px;
+}

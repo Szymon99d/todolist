@@ -23,14 +23,21 @@ class Task
     private $goal;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $priority;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status;
 
     public function getId(): ?int
     {
@@ -49,18 +56,6 @@ class Task
         return $this;
     }
 
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -69,6 +64,30 @@ class Task
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

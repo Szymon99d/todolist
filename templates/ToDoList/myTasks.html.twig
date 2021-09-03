@@ -1,0 +1,103 @@
+{% extends 'globalTemplate.html.twig' %}
+
+{% block title %}Moje zadania{% endblock %}
+
+{% block main %}
+
+<div id="myTasks" class="container-fluid block-main">
+
+    <div class="row">
+        <div class="col-sm-3 category-panel  d-none d-lg-block">
+            <hr class="mb-3" style="visibility:hidden;">
+            <h2>Szybki dostęp</h2>
+            <hr class="mb-3">
+            {% if categories|length == 0 %}
+                <h3>Utwórz swoją pierwszą kategorię, aby dodawać zadania</h3>
+            {% else %}
+                {% for cat in categories %}
+                    
+                    <div class="row mb-3">
+                        <div>
+                            <h3>{{cat.categoryName}}</h3> 
+                        </div>
+                        
+                        <ol>
+                        {% set undoneTasks = 0 %}
+                        {% if cat.getTasks() is empty %}
+                            <li class="task-list-element break-words">Brak zadań</li>
+                        {% endif %}
+                        {% for tasks in cat.getTasks() %}
+                            {% if tasks.status == false %}
+                                <li class="task-list-element break-words">{{tasks.getGoal}}</li>
+                                {% set undoneTasks = undoneTasks + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                            {% if undoneTasks == 0 %}
+                                <li class="task-list-element break-words">Brak zadań</li>
+                            {% endif %}
+                        </ol>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        </div> 
+        <div class="col-sm-12 col-md-12 col-lg-9 task-panel">
+
+            <hr class="mb-3" style="visibility:hidden;">
+            
+            {% for message in app.flashes('warn') %}
+                <div class="mb-3 warn-message alert alert-danger">
+                    <h3>{{message}}</h3>
+                </div>
+            {% endfor %}
+
+            <h2 class="mb-3">Dodaj nową kategorię np: Praca</h2>
+            {{form_start(categoryForm)}}
+
+            <div class="container block-form">
+                <div class="row mb-3">
+                    {{form_widget(categoryForm.categoryName)}}
+                </div>
+                <div class="row mb-3">
+                    {{form_widget(categoryForm.submit)}}
+                </div>
+             </div>
+
+            {{form_end(categoryForm)}}
+
+            <hr class="mb-3">
+
+            <h2 class="mb-5">Przeglądaj, dodawaj i usuwaj zadania w swoich kategoriach</h2>
+            <div class="row mb-3">
+
+                {% for cat in categories %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3 bg-block-pattern">
+                        <div class="block-category">
+                            <div>
+                                <h2>{{cat.categoryName}} ({{cat.getTasks()|length}})</h2>
+                                <div class="row btn-padding">
+                                    <a href="{{path('taskBrowser',{'categoryId':cat.getId(),'categoryName':cat.getCategoryName()})}}">
+                                        <button class="btn btn-lg btn-primary">Przeglądaj</button>
+                                    </a>
+                                </div>
+                                <div class="row btn-padding">
+                                    <a href="{{path('deleteCategory',{'categoryId':cat.getId()})}}" >
+                                        <button id="{{cat.getCategoryName()}}" class="btn btn-lg btn-danger"
+                                        onclick="return confirm('Na pewno usunąć kategorię: '+this.id+'?')">
+                                        Usuń kategorię
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>  
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -8,6 +8,7 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './styles/forms.css';
+import './styles/taskPanel.css';
 // start the Stimulus application
 import './bootstrap';
 
@@ -15,16 +16,11 @@ import './bootstrap';
 var navbar = $("#navbar");
     
 $(window).on('scroll',()=>{    
-    var scroll = $(window).scrollTop();
-    if (scroll >= 40 && !window.matchMedia("(max-width:575px)").matches) 
+    if ($(window).scrollTop() >= 40 && !window.matchMedia("(max-width:575px)").matches) 
         navbar.addClass('hidden-nav');
      else 
         navbar.removeClass('hidden-nav');
 });
-
-
-
-
 
 
 

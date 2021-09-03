@@ -24,6 +24,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Podaj nazwę użytkownika")
+     * @Assert\Length(min=6,max=24,minMessage="Nazwa użytkownika musi składać się z min. 6 znaków",
+     * maxMessage="Nazwa użytkownika musi składać się z max. 24 znaków")
      */
     private $username;
 
@@ -35,24 +38,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min=8,max=24,minMessage="Hasło musi składać się z min. 8 znaków",
+     * maxMessage="Hasło musi składać się z max. 24 znaków")
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Email()
-     * @Assert\Unique
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email(message="Podany adres email nie jest poprawny",
+     * mode="strict")
      */
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user",cascade={"remove"},orphanRemoval=true)
      */
     private $tasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="user",cascade={"remove"},orphanRemoval=true)
+     */
+    private $category;
 
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +186,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($task->getUser() === $this) {
                 $task->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+            $category->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->category->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getUser() === $this) {
+                $category->setUser(null);
             }
         }
 

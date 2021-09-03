@@ -19,18 +19,19 @@ class RegisterUserType extends AbstractType
         $builder
             ->add('username', TextType::class,[
                 'label'=>'Nazwa użytkownika',
-                'attr'=>['placeholder'=>'Nazwa użytkownika','class'=>'form-control form-control-lg'],
+                'attr'=>['placeholder'=>'Nazwa użytkownika','class'=>'form-control form-control-icons form-control-lg'],
             ])
             ->add('email',EmailType::class,[
                 'label'=>'E-mail',
-                'attr'=>['placeholder'=>'Adres email','class'=>'form-control form-control-lg'],
+                'attr'=>['placeholder'=>'Adres email','class'=>'form-control form-control-icons form-control-lg'],
             ])
             ->add('password',RepeatedType::class,[
                 'type'=>PasswordType::class,
                 'first_name'=>'pass',
+                'invalid_message'=>'Podane hasła nie są takie same',
                 'second_name'=>'repeatPass',
-                'first_options'=>['label'=>'Podaj hasło','attr'=>['placeholder'=>'Podaj hasło','class'=>'form-control form-control-lg']],
-                'second_options'=>['label'=>'Powtórz hasło','attr'=>['placeholder'=>'Powtórz hasło','class'=>'form-control form-control-lg']],
+                'first_options'=>['label'=>'Podaj hasło','attr'=>['placeholder'=>'Podaj hasło','class'=>'form-control form-control-icons form-control-lg']],
+                'second_options'=>['label'=>'Powtórz hasło','attr'=>['placeholder'=>'Powtórz hasło','class'=>'form-control form-control-icons form-control-lg']],
             ])
             ->add('register',SubmitType::class,[
                 'label'=>'Zarejestruj się',

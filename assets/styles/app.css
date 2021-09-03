@@ -22,7 +22,7 @@ body {
     min-height: 1000px;
     background-color: rgb(31, 121, 73);
     text-align: center;
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
 }
 .footer{
     background-color: rgb(30,30,30);
@@ -30,6 +30,7 @@ body {
 }
 .bi{
     padding: 5px;
+    display: inline;
 }
 .spacing{
     padding: 50px 0px 50px 0px;
