@@ -15,7 +15,6 @@
                 <h3>Utwórz swoją pierwszą kategorię, aby dodawać zadania</h3>
             {% else %}
                 {% for cat in categories %}
-                    
                     <div class="row mb-3">
                         <div>
                             <h3>{{cat.categoryName}}</h3> 
@@ -23,16 +22,13 @@
                         
                         <ol>
                         {% set undoneTasks = 0 %}
-                        {% if cat.getTasks() is empty %}
-                            <li class="task-list-element break-words">Brak zadań</li>
-                        {% endif %}
                         {% for tasks in cat.getTasks() %}
                             {% if tasks.status == false %}
                                 <li class="task-list-element break-words">{{tasks.getGoal}}</li>
                                 {% set undoneTasks = undoneTasks + 1 %}
                             {% endif %}
                         {% endfor %}
-                            {% if undoneTasks == 0 %}
+                            {% if undoneTasks == 0 or cat.getTasks() is empty %}
                                 <li class="task-list-element break-words">Brak zadań</li>
                             {% endif %}
                         </ol>
