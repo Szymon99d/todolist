@@ -12,13 +12,11 @@ use App\Services\CheckCategoryName;
 use App\Services\CheckUserAuthentication;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
-
 
 class ToDoListController extends AbstractController
 {
@@ -35,6 +33,7 @@ class ToDoListController extends AbstractController
     #[Route('/', name: 'main')]
     public function index(): Response
     {
+        
         
         return $this->render('ToDoList/index.html.twig', [
         ]);
