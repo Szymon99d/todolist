@@ -40,8 +40,12 @@
             </div>
         </div>
         <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-        >
+            value="{{ csrf_token('authenticate') }}">
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me" name="remember_me"> Remember me
+            </label>
+        </div>
     </form>
     <h4>Nie masz konta? <a href="{{path('register')}}" class="text-link">Zarejestruj się</a></h4>
 </div>

@@ -21,6 +21,3 @@ $(window).on('scroll',()=>{
      else 
         navbar.removeClass('hidden-nav');
 });
-
-
-
